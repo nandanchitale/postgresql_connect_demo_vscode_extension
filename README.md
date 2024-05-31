@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # convntionenforcer README
 
 This is the README for your extension "convntionenforcer". After writing up a brief description, we recommend including the following sections.
@@ -69,3 +70,7 @@ You can author your README using Visual Studio Code. Here are some useful editor
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
+=======
+# postgresql_connect_demo_vscode_extension
+Demo VSCode Extension which will connect to postgresql Database 
+>>>>>>> c20134c0d8d884f9644394b37bb70d734cc15088
