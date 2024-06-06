@@ -48,6 +48,24 @@ async function connectToPostgres() {
   }
 }
 
+async function GetLoggedInUserData(context: vscode.ExtensionContext) {
+  // Get the session for the GitHub authentication provider
+  const session = await vscode.authentication.getSession(
+    "github",
+    ["user:email"],
+    { createIfNone: true }
+  );
+  let message = "No user has logged in";
+  
+  // Check if the session is valid
+  if (session) {
+    message = `${session.account.label} Connected to VSCode successfully!`;
+  }
+
+  // Show an information message indicating that the user has logged in successfully
+  vscode.window.showInformationMessage(message);
+}
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -67,8 +85,16 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  let currentUserInfo = vscode.commands.registerCommand(
+    "convntionenforcer.getUserInfo",
+    async () => {
+      await GetLoggedInUserData(context);
+    }
+  );
+
   context.subscriptions.push(disposable);
   context.subscriptions.push(connectCommand);
+  context.subscriptions.push(currentUserInfo);
 }
 
 export function deactivate() {}
