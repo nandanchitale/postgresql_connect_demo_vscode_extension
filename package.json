@@ -10,8 +10,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.connectToPostgres",
-    "onCommand:extension.getUserInfo"
+    "onStartupFinished"
   ],
   "main": "./dist/extension.js",
   "contributes": {

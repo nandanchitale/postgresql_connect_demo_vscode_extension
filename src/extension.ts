@@ -56,7 +56,7 @@ async function GetLoggedInUserData(context: vscode.ExtensionContext) {
     { createIfNone: true }
   );
   let message = "No user has logged in";
-  
+
   // Check if the session is valid
   if (session) {
     message = `${session.account.label} Connected to VSCode successfully!`;
@@ -95,6 +95,11 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposable);
   context.subscriptions.push(connectCommand);
   context.subscriptions.push(currentUserInfo);
+
+  // Execute the command automatically when a document is opened
+  vscode.workspace.onDidOpenTextDocument(() => {
+    vscode.commands.executeCommand("convntionenforcer.getUserInfo");
+  });
 }
 
 export function deactivate() {}
